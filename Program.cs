@@ -56,9 +56,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost", policy =>
+    options.AddPolicy("AllowAll", policy =>
     {
-        policy.WithOrigins("http://localhost:5173", "http://localhost:5174")
+        policy.WithOrigins("http://localhost:5173", "http://localhost:5174","https://smart-season-field-monitoring.vercel.app")
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();
@@ -73,6 +73,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 using var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+await db.Database.MigrateAsync();
 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 string[] roles = new string[] { "Admin", "FieldAgent" };
 
@@ -83,7 +85,7 @@ foreach (var role in roles)
         await roleManager.CreateAsync(new IdentityRole(role));
     }
 }
-
+app.MapGet("/health", () => "OK");
 
 app.UseHttpsRedirection();
 app.UseCors("AllowLocalhost");
