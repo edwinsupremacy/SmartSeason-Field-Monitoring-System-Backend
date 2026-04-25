@@ -85,7 +85,7 @@ foreach (var role in roles)
         await roleManager.CreateAsync(new IdentityRole(role));
     }
 }
-app.MapGet("/health", () => "OK");
+app.MapMethods("/health", new[] { "GET", "HEAD" }, () => "OK");
 
 app.UseHttpsRedirection();
 app.UseCors("AllowLocalhost");
