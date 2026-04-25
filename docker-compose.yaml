@@ -1,0 +1,40 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: SmartSeason Field Monitoring System
+    ports:
+      - "5289:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection:  "Server=db,1433;Database=SmartSeasonFieldDatabase;User Id=sa;Password=Smart-Season-Field-Monitoring-System-database@2026;TrustServerCertificate=True;Encrypt=False"
+      JWT__Issuer: "http://localhost:5112"
+      JWT__Audience: "http://localhost:5112"
+      JWT__SigningKey: "x8k3j9f0sld9q2m8v7c1p5z9a0r8t6w2n4b9h1k7j3f6s0d9l2q8w1e7r5t9y3u6i0o4p8a2s7d5f9g1h3j6k8l0"
+    depends_on:
+      - db
+    restart: unless-stopped
+  db:
+     image: mcr.microsoft.com/mssql/server:2022-latest
+     container_name: Smart-Season-Field-Monitoring-System-database
+     ports:
+       - "1433:1433"
+     environment:
+       ACCEPT_EULA: "y"
+       SA_PASSWORD: "Smart-Season-Field-Monitoring-System-database@2026"
+     volumes:
+       - Mysqlserver_data:/var/opt/mssql
+     restart: unless-stopped
+  
+  
+    
+volumes:
+  Mysqlserver_data:
+  
+
+     
+  
+
+      
