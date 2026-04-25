@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartSeason Field Monitoring System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f68da68e92b48403a5a794fa764edf037ddbfa54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b17319a6bf91b63e8dcbb349d56cfa8e15e9d9c4")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartSeason Field Monitoring System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartSeason Field Monitoring System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

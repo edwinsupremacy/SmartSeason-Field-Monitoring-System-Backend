@@ -88,7 +88,7 @@ foreach (var role in roles)
 app.MapMethods("/health", new[] { "GET", "HEAD" }, () => "OK");
 
 app.UseHttpsRedirection();
-app.UseCors("AllowLocalhost");
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
